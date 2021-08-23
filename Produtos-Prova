@@ -11,7 +11,7 @@ Hora: <input type="number" name="hora" value="">
     if(!empty($_POST['chuveiro'])){
         
         
-        $t= $v*$i/300; 
+        $t= $v*$i/1000; 
         $resultadoFinal= $t*8;
         $v= $_POST['watt'];
         $i = $_POST['hota'];
