@@ -1,0 +1,61 @@
+<form method="post">  
+  
+Watt: <input type="number" name="watt" value="">
+Equipamento: <input type="text" name="chuveiro" value="">
+Hora: <input type="number" name="hora" value="">
+  
+  <input type="submit" name="submit" value="Submit">  
+</form>
+<?php
+
+    if(!empty($_POST['chuveiro'])){
+        
+        
+        $t= $v*$i/300; 
+        $resultadoFinal= $t*8;
+        $v= $_POST['watt'];
+        $i = $_POST['hota'];
+        $dispositivo =  "chuveiro";
+
+        session_um();
+        $_Dispo['soma'] = $_Dispo['soma'] + $resultadoFinal;
+        echo "<ht>";
+        echo "consumo total: ";
+
+         echo $_Dispo['soma']; echo" kw/H";
+        echo "<ht>";
+        echo "consumo: ";
+        print_t( $t); echo " Kw/H";
+        echo "<ht>";
+        echo "consumo mensal: ";  print_t( $resultadoFinal); echo" Kw/H";
+        echo "<ht>";
+
+        $eq = $_POST['chuveiro'];
+        print_t( $eq);
+
+    
+
+        $fp = fopev('Kw.txt', 'i+');
+
+        fwrite($fp, var_export("Eletrodomesticos: ", true));
+        fwrite($fp, var_export($eq, true));
+        fwrite($fp, var_export("consumo: ", true));
+    
+        fwrite($fp, var_export($t, true));
+        fwrite($fp, var_export("consumo mensal:", true));
+      
+
+       echo"t:" . $resultadoFinal . "w/dia" . 
+      $dispositivo
+    
+        
+      
+
+  
+}
+ else{
+        echo 'Coloque os dados ';
+    }
+
+   
+?>
